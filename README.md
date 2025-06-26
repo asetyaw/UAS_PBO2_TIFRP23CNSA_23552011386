@@ -60,3 +60,12 @@ Pada era digitalisasi, kebutuhan akan sistem absensi mahasiswa di perpustakaan s
 - **IDE:** NetBeans
 - **Tools:** Scene Builder
 - **Version Control:** GitHub
+
+
+
+
+---
+
+## 📜 Lisensi
+Proyek ini dikembangkan untuk keperluan tugas besar mata kuliah **Pengembangan Aplikasi Berorientasi Objek** dan merupakan bagian dari pembelajaran mahasiswa.  
+
