@@ -7,6 +7,10 @@ package com.mycompany.perpus.controller;
 import com.mycompany.perpus.dao.MahasiswaDAO;
 import com.mycompany.perpus.dao.AbsensiDAO;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,9 +21,11 @@ import javafx.event.ActionEvent;
 import javafx.scene.*;
 import javafx.stage.Stage;
 import javafx.scene.media.AudioClip;
-
-
-
+import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
+import javafx.application.Platform;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 import java.io.IOException;
 
@@ -27,14 +33,12 @@ public class AbsensiController {
     @FXML private TextField nimField;
     @FXML private Label statusLabel;
     @FXML private Label welcomeLabel;
-
+    @FXML private ImageView logoView;
+    @FXML private Button loginAdminButton;
 
     private MahasiswaDAO mahasiswaDAO = new MahasiswaDAO();
     private AbsensiDAO absensiDAO = new AbsensiDAO();
 
-    /**
-     * Method untuk melakukan absensi berdasarkan NIM
-     */
     @FXML
     private void submitAbsensi() {
         String nim = nimField.getText().trim();
@@ -47,8 +51,10 @@ public class AbsensiController {
         if (!mahasiswaDAO.exists(nim)) {
             statusLabel.setText("NIM belum terdaftar.");
         } else if (absensiDAO.insertAbsensi(nim)) {
-            String nama = mahasiswaDAO.getNamaByNim(nim); // kamu harus punya method ini
-            welcomeLabel.setText("Selamat datang, " + nama + "!");
+            String nama = mahasiswaDAO.getNamaByNim(nim);
+            String pesan = "Selamat datang, " + nama + "!";
+
+            playTypingAnimation(pesan);
 
             AudioClip clip = new AudioClip(getClass().getResource("/sounds/selamat_datang.wav").toString());
             clip.play();
@@ -60,9 +66,23 @@ public class AbsensiController {
         }
     }
 
-    /**
-     * Method untuk membuka form pendaftaran mahasiswa
-     */
+    private void playTypingAnimation(String fullText) {
+        welcomeLabel.setText("");
+        final int[] index = {0};
+
+        Timeline timeline = new Timeline();
+        timeline.setCycleCount(fullText.length());
+
+        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(50), event -> {
+            if (index[0] < fullText.length()) {
+                welcomeLabel.setText(welcomeLabel.getText() + fullText.charAt(index[0]));
+                index[0]++;
+            }
+        }));
+
+        timeline.play();
+    }
+
     @FXML
     private void openRegisterDialog() {
         try {
@@ -79,22 +99,38 @@ public class AbsensiController {
             statusLabel.setText("Gagal membuka dialog pendaftaran.");
         }
     }
-    
+
     @FXML
-    
     private void openLoginPage(ActionEvent event) {
-    try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
-        Parent loginRoot = loader.load();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
+            Parent loginRoot = loader.load();
 
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(loginRoot);
-        stage.setScene(scene);
-        stage.setTitle("Login Admin");
-        stage.show();
-    } catch (IOException e) {
-        e.printStackTrace();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(loginRoot);
+            stage.setScene(scene);
+            stage.setTitle("Login Admin");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-}
 
+    @FXML
+    public void initialize() {
+        Image logo = new Image(getClass().getResource("/images/Logo_utb.png").toExternalForm());
+        logoView.setImage(logo);
+        welcomeLabel.setText("");
+        loginAdminButton.setVisible(false); // Sembunyikan saat awal
+
+        // Tunggu sampai scene siap
+        Platform.runLater(() -> {
+            Scene scene = logoView.getScene();
+            scene.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+                if (event.isControlDown() && event.getCode() == KeyCode.A) {
+                    loginAdminButton.setVisible(true);
+                }
+            });
+        });
+    }
 }

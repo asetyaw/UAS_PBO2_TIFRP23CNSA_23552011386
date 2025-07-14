@@ -12,10 +12,18 @@ import com.mycompany.perpus.dialog.MahasiswaFormDialog;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-
+import javafx.stage.FileChooser;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.File;
+import java.net.URL;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.fxml.FXMLLoader;
+
 
 public class AdminDashboardController {
 
@@ -32,9 +40,132 @@ public class AdminDashboardController {
     @FXML private TableColumn<Mahasiswa, String> mhsNamaColumn;
     @FXML private TableColumn<Mahasiswa, String> mhsProdiColumn;
     @FXML private TableColumn<Mahasiswa, String> mhsAngkatanColumn;
+    @FXML private TextField searchAbsensiField;
+
 
     private final AbsensiDAO absensiDAO = new AbsensiDAO();
     private final MahasiswaDAO mahasiswaDAO = new MahasiswaDAO();
+    
+    @FXML
+    private void handleSearchAbsensi() {
+        String keyword = searchAbsensiField.getText().toLowerCase();
+
+        List<Absensi> semuaAbsensi = absensiTable.getItems(); // data yang sedang ditampilkan (setelah filter)
+        List<Absensi> hasilFilter = semuaAbsensi.stream()
+            .filter(absen -> absen.getNim().toLowerCase().contains(keyword) ||
+                             absen.getNama().toLowerCase().contains(keyword))
+            .collect(Collectors.toList());
+
+        absensiTable.setItems(FXCollections.observableArrayList(hasilFilter));
+    }
+
+    
+    @FXML
+    private void handleExportAbsensiCsv() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Simpan Laporan Absensi");
+        fileChooser.setInitialFileName("laporan_absensi.csv");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+
+        File file = fileChooser.showSaveDialog(null);
+        if (file != null) {
+            try (FileWriter writer = new FileWriter(file)) {
+                // Template Header
+                writer.write("LAPORAN DATA ABSENSI PERPUSTAKAAN\n");
+                writer.write("Tanggal Export: " + LocalDate.now() + "\n\n");
+
+                // Header kolom
+                writer.write("No,NIM,Nama,Waktu Hadir\n");
+
+                // Isi data
+                int no = 1;
+                for (Absensi absensi : absensiTable.getItems()) {
+                    writer.write(String.format("%d,%s,%s,%s\n",
+                            no++,
+                            absensi.getNim(),
+                            absensi.getNama(),
+                            absensi.getWaktu()));
+                }
+
+                showAlert(Alert.AlertType.INFORMATION, "Berhasil", "Laporan absensi berhasil disimpan.");
+            } catch (IOException e) {
+                showAlert(Alert.AlertType.ERROR, "Gagal", "Gagal menyimpan file: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+    }
+    
+    @FXML
+    private void handleExportMahasiswaCsv() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Simpan Data Mahasiswa");
+        fileChooser.setInitialFileName("data_mahasiswa.csv");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+
+        File file = fileChooser.showSaveDialog(null);
+        if (file != null) {
+            try (FileWriter writer = new FileWriter(file)) {
+                // Header Template
+                writer.write("DATA MAHASISWA PERPUSTAKAAN\n");
+                writer.write("Tanggal Export: " + LocalDate.now() + "\n\n");
+
+                // Header Kolom
+                writer.write("No,NIM,Nama,Prodi,Angkatan\n");
+
+                // Isi data
+                int no = 1;
+                for (Mahasiswa mhs : mahasiswaTable.getItems()) {
+                    writer.write(String.format("%d,%s,%s,%s,%s\n",
+                        no++,
+                        mhs.getNim(),
+                        mhs.getNama(),
+                        mhs.getProdi(),
+                        mhs.getAngkatan()));
+                }
+
+                showAlert(Alert.AlertType.INFORMATION, "Berhasil", "Data mahasiswa berhasil diexport ke CSV.");
+            } catch (IOException e) {
+                showAlert(Alert.AlertType.ERROR, "Gagal", "Gagal menyimpan file: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+    }
+    
+    @FXML
+    private void handleLogout() {
+        Alert konfirmasi = new Alert(Alert.AlertType.CONFIRMATION);
+        konfirmasi.setTitle("Konfirmasi Logout");
+        konfirmasi.setHeaderText("Anda yakin ingin logout?");
+        konfirmasi.setContentText("Pilih OK untuk keluar.");
+
+        konfirmasi.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                try {
+                    // Tampilkan halaman absensi terlebih dahulu
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/absensi.fxml"));
+                    Scene scene = new Scene(loader.load());
+                    URL css = getClass().getResource("/css/style.css");
+                    if (css != null) {
+                        scene.getStylesheets().add(css.toExternalForm());
+                    }
+                    Stage absensiStage = new Stage();
+                    absensiStage.setTitle("Absensi Pengunjung");
+                    absensiStage.setScene(scene);
+                    absensiStage.show();
+
+                    // Baru tutup dashboard admin
+                    Stage currentStage = (Stage) filterCombo.getScene().getWindow();
+                    currentStage.close();
+
+                } catch (IOException e) {
+                    showAlert(Alert.AlertType.ERROR, "Gagal", "Gagal membuka halaman absensi: " + e.getMessage());
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+
 
     @FXML
     private void initialize() {

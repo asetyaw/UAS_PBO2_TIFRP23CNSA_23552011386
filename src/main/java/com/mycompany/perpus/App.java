@@ -11,8 +11,21 @@ public class App extends Application {
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/absensi.fxml"));
         AnchorPane root = loader.load();
-        Scene scene = new Scene(root, 600, 400);
+
+        Scene scene = new Scene(root);
+
+        // Tambahkan CSS eksternal
+        scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
+
+        // Set judul jendela
         primaryStage.setTitle("Aplikasi Absensi Perpustakaan");
+
+        // ➤ Agar jendela tampil penuh saat awal (masih ada titlebar dan taskbar)
+        primaryStage.setMaximized(true);
+
+        // ➤ Jika kamu ingin fullscreen total (tanpa titlebar/taskbar):
+        // primaryStage.setFullScreen(true);
+
         primaryStage.setScene(scene);
         primaryStage.show();
     }

@@ -16,6 +16,7 @@
             <Region HBox.hgrow="ALWAYS"/>
             <ComboBox fx:id="filterCombo" prefWidth="150"/>
             <Button text="Tampilkan" onAction="#handleFilter"/>
+            <Button text="Logout" onAction="#handleLogout"/>
         </HBox>
     </top>
 
@@ -23,10 +24,23 @@
         <TabPane>
             <!-- TAB ABSENSI -->
             <Tab text="Absensi">
-                <VBox>
+                <VBox spacing="10">
                     <padding>
                         <Insets top="10" right="10" bottom="10" left="10"/>
                     </padding>
+
+                    <HBox spacing="10">
+                        <Button text="Export CSV" onAction="#handleExportAbsensiCsv"/>
+                    </HBox>
+                    
+                    <HBox spacing="10">
+                        <Label text="Cari Absensi:"/>
+                        <TextField fx:id="searchAbsensiField"
+                                   promptText="Masukkan NIM atau Nama..."
+                                   onKeyReleased="#handleSearchAbsensi"/>
+                    </HBox>
+
+                    
                     <TableView fx:id="absensiTable" prefHeight="500">
                         <columns>
                             <TableColumn text="NIM" fx:id="nimColumn" />
@@ -43,6 +57,12 @@
                     <padding>
                         <Insets top="10" right="10" bottom="10" left="10"/>
                     </padding>
+                    
+                    <HBox spacing="10">
+                        <Button text="Export CSV" onAction="#handleExportMahasiswaCsv"/>
+                    </HBox>
+
+                 
                     <HBox spacing="10">
                         <Label text="Cari Mahasiswa:"/>
                         <TextField fx:id="searchField"
