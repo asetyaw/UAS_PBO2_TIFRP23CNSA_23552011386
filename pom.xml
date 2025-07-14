@@ -21,6 +21,11 @@
             <version>13</version>
         </dependency>
         <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-media</artifactId>
+            <version>13</version> 
+        </dependency>
+        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.32</version>
@@ -42,6 +47,9 @@
                 <version>0.0.4</version>
                 <configuration>
                     <mainClass>com.mycompany.perpus.App</mainClass>
+                    <options>
+                        <option>--add-modules=javafx.controls,javafx.fxml,javafx.media</option>
+                    </options>
                 </configuration>
                 <executions>
                     <execution>

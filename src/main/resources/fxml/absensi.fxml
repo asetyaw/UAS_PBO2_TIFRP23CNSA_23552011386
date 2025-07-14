@@ -1,15 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.control.*?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.perpus.controller.AbsensiController" prefWidth="600" prefHeight="400">
-    <Label layoutX="20" layoutY="20" text="Absensi Perpustakaan" style="-fx-font-size: 24;" />
-    <Label layoutX="20" layoutY="80" text="NIM:" />
-    <TextField fx:id="nimField" layoutX="80" layoutY="76" prefWidth="200" />
-    <Button text="Submit Absensi" layoutX="300" layoutY="76" onAction="#submitAbsensi" />
-    <Label fx:id="statusLabel" layoutX="20" layoutY="140" style="-fx-font-size: 14;" />
-    <Button text="Register Mahasiswa Baru"
-        layoutX="300"
-        layoutY="120"
-        onAction="#openRegisterDialog" />
 
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.mycompany.perpus.controller.AbsensiController"
+            stylesheets="@../css/style.css"
+            prefWidth="600" prefHeight="400"
+            styleClass="root">
+
+    <!-- Judul -->
+    <Label layoutX="20" layoutY="20" text="Absensi Perpustakaan"
+           styleClass="label-title" />
+
+    <!-- Input NIM -->
+    <Label layoutX="20" layoutY="80" text="NIM:" styleClass="label-status"/>
+    <TextField fx:id="nimField" layoutX="80" layoutY="76" prefWidth="200"
+               styleClass="text-field" />
+    <Button text="Submit Absensi" layoutX="300" layoutY="76"
+            onAction="#submitAbsensi"
+            styleClass="flat-button" />
+
+    <!-- Status absensi -->
+    <Label fx:id="statusLabel" layoutX="20" layoutY="140"
+           styleClass="label-status" />
+
+    <!-- Ucapan Selamat Datang -->
+    <Label fx:id="welcomeLabel"
+           layoutX="20"
+           layoutY="180"
+           prefWidth="560"
+           styleClass="label-welcome" />
+
+    <!-- Tombol Register -->
+    <Button text="Registrasi"
+            layoutX="300"
+            layoutY="120"
+            onAction="#openRegisterDialog"
+            styleClass="flat-button" />
+
+    <!-- Tombol Login Admin -->
+    <Button text="Login Admin"
+            layoutX="480"
+            layoutY="20"
+            onAction="#openLoginPage"
+            styleClass="button" />
 </AnchorPane>

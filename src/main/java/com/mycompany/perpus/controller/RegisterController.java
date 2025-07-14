@@ -6,9 +6,13 @@ package com.mycompany.perpus.controller;
 
 import com.mycompany.perpus.dao.MahasiswaDAO;
 import com.mycompany.perpus.model.Mahasiswa;
-import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.collections.FXCollections;
+import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
+
+
 
 public class RegisterController {
     @FXML private TextField nimField;
@@ -16,14 +20,29 @@ public class RegisterController {
     @FXML private TextField prodiField;
     @FXML private TextField angkatanField;
     @FXML private Label statusLabel;
+    @FXML private ComboBox<String> prodiCombo;
+
 
     private MahasiswaDAO mahasiswaDAO = new MahasiswaDAO();
+    
+        @FXML
+    private void initialize() {
+        // Isi pilihan program studi
+        prodiCombo.setItems(FXCollections.observableArrayList(
+            "Teknik Informatika",
+            "Teknik Industri",
+            "Desain Komunikasi Visual",
+            "Bisnis Digital",
+            "Manajemen Retail"
+        ));
+    }
+
 
     @FXML
     private void submitRegistration() {
         String nim = nimField.getText().trim();
         String nama = namaField.getText().trim();
-        String prodi = prodiField.getText().trim();
+        String prodi = prodiCombo.getValue();
         String angkatan = angkatanField.getText().trim();
 
         if (nim.isEmpty() || nama.isEmpty() || prodi.isEmpty() || angkatan.isEmpty()) {
@@ -47,7 +66,7 @@ public class RegisterController {
     private void clearFields() {
         nimField.clear();
         namaField.clear();
-        prodiField.clear();
+        prodiCombo.getSelectionModel().clearSelection();
         angkatanField.clear();
     }
 }
