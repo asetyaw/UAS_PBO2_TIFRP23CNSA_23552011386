@@ -16,10 +16,10 @@ public class AdminDAO {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, username);
-            stmt.setString(2, password); // atau hash(password) kalau sudah pakai hash
+            stmt.setString(2, password); 
 
             ResultSet rs = stmt.executeQuery();
-            return rs.next(); // true jika ada hasil = login valid
+            return rs.next(); 
         } catch (Exception e) {
             e.printStackTrace();
             return false;

@@ -16,7 +16,6 @@ public class DatabaseConnection {
 
     private static Connection connection;
 
-    // Tetap memuat driver sekali
     static {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -27,7 +26,6 @@ public class DatabaseConnection {
     }
 
     public static Connection getConnection() throws SQLException {
-        // Jika belum ada connection, atau sudah ditutup, buat baru
         if (connection == null || connection.isClosed()) {
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
             System.out.println("Database connection established successfully.");

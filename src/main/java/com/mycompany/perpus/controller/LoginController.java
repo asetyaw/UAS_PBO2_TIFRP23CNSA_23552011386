@@ -30,7 +30,6 @@ public class LoginController {
 
         if (adminDAO.authenticate(username, password)) {
             try {
-                // Tampilkan ucapan selamat datang
                 String welcomeMessage = "Selamat datang, " + username + "!";
                 statusLabel.setText(welcomeMessage);
 

@@ -22,7 +22,6 @@
 
     <center>
         <TabPane>
-            <!-- TAB ABSENSI -->
             <Tab text="Absensi">
                 <VBox spacing="10">
                     <padding>
@@ -51,7 +50,6 @@
                 </VBox>
             </Tab>
 
-            <!-- TAB MAHASISWA -->
             <Tab text="Data Mahasiswa">
                 <VBox spacing="10">
                     <padding>

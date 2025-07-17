@@ -65,7 +65,6 @@
         </VBox>
     </StackPane>
 
-    <!-- Tombol Login Admin di kanan atas -->
     <Button fx:id="loginAdminButton"
             text="Admin"
             onAction="#openLoginPage"
@@ -75,7 +74,6 @@
             AnchorPane.rightAnchor="20.0"
             prefWidth="120" prefHeight="35"/>
 
-    <!-- Tombol Registrasi di kanan bawah, di atas footer -->
     <Button text="Registrasi"
             onAction="#openRegisterDialog"
             styleClass="secondary-button"

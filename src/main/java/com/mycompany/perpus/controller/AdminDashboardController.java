@@ -141,7 +141,6 @@ public class AdminDashboardController {
         konfirmasi.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
                 try {
-                    // Tampilkan halaman absensi terlebih dahulu
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/absensi.fxml"));
                     Scene scene = new Scene(loader.load());
                     URL css = getClass().getResource("/css/style.css");
@@ -153,7 +152,6 @@ public class AdminDashboardController {
                     absensiStage.setScene(scene);
                     absensiStage.show();
 
-                    // Baru tutup dashboard admin
                     Stage currentStage = (Stage) filterCombo.getScene().getWindow();
                     currentStage.close();
 
@@ -169,18 +167,15 @@ public class AdminDashboardController {
 
     @FXML
     private void initialize() {
-        // Inisialisasi kolom Absensi
         nimColumn.setCellValueFactory(data -> data.getValue().nimProperty());
         namaColumn.setCellValueFactory(data -> data.getValue().namaProperty());
         waktuColumn.setCellValueFactory(data -> data.getValue().waktuProperty());
 
-        // Inisialisasi kolom Mahasiswa
         mhsNimColumn.setCellValueFactory(data -> data.getValue().nimProperty());
         mhsNamaColumn.setCellValueFactory(data -> data.getValue().namaProperty());
         mhsProdiColumn.setCellValueFactory(data -> data.getValue().prodiProperty());
         mhsAngkatanColumn.setCellValueFactory(data -> data.getValue().angkatanProperty());
 
-        // Tambahkan item filter
         filterCombo.setItems(FXCollections.observableArrayList(
             "Hari Ini",
             "Minggu Ini",
