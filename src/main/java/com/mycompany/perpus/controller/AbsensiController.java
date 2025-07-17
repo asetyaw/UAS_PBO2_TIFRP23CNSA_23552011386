@@ -73,7 +73,7 @@ public class AbsensiController {
         Timeline timeline = new Timeline();
         timeline.setCycleCount(fullText.length());
 
-        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(50), event -> {
+        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(35), event -> {
             if (index[0] < fullText.length()) {
                 welcomeLabel.setText(welcomeLabel.getText() + fullText.charAt(index[0]));
                 index[0]++;
@@ -123,7 +123,6 @@ public class AbsensiController {
         welcomeLabel.setText("");
         loginAdminButton.setVisible(false); // Sembunyikan saat awal
 
-        // Tunggu sampai scene siap
         Platform.runLater(() -> {
             Scene scene = logoView.getScene();
             scene.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
