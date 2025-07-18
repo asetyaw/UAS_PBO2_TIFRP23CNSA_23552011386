@@ -9,6 +9,15 @@
 
 ---
 
+## Profil
+
+<ul>
+  <li>Nama: {Bayu Aji Prayoga}</li>
+  <li>NIM: {23552011194}</li>
+  <li>Studi Kasus: {Aplikasi KASIRIN Berbasis GUI untuk Digitalisasi Warung Mamah Arika (NusaMart)}</li>
+</ul>
+
+---
 ## ✨ Fitur Unggulan
 
 ✅ Absensi Mahasiswa berdasarkan NIM  
