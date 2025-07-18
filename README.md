@@ -48,15 +48,54 @@
 ## Penjelasan 4 Pilar OOP dalam Studi Kasus
 1. **Enkapsulasi**  
    Setiap entitas seperti `Mahasiswa`, `Absensi`, dan `Admin` diwakili oleh kelas dengan atribut dan metode yang dibungkus secara rapi. Data sensitif seperti password admin dienkapsulasi agar tidak diakses langsung.
+   ```java
+   public class Mahasiswa {
+    public StringProperty nimProperty() { return nim; }
+    public StringProperty namaProperty() { return nama; }
+    public StringProperty prodiProperty() { return prodi; }
+    public StringProperty angkatanProperty() { return angkatan; }
 
-2. **Abstraksi**  
+    public String getNim() { return nim.get(); }
+    public String getNama() { return nama.get(); }
+    public String getProdi() { return prodi.get(); }
+    public String getAngkatan() { return angkatan.get(); }
+
+    public void setNim(String value) { nim.set(value); }
+    public void setNama(String value) { nama.set(value); }
+    public void setProdi(String value) { prodi.set(value); }
+    public void setAngkatan(String value) { angkatan.set(value); }
+    }
+  
+3. **Abstraksi**  
    Implementasi koneksi database (DAO) disembunyikan dari komponen GUI, hanya menyediakan metode seperti `simpanAbsensi()`, `getMahasiswaByNIM()`, dll.
+      ```java
+      public class MahasiswaDAO {
 
-3. **Inheritance (Pewarisan)**  
+    public boolean exists(String nim) {
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement("SELECT 1 FROM mahasiswa WHERE nim=?")) {
+            stmt.setString(1, nim);
+            return stmt.executeQuery().next();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+      }
+    }
+
+
+5. **Inheritance (Pewarisan)**  
    Kelas turunan dapat dibuat dari kelas dasar jika dibutuhkan — misalnya jika ingin mengembangkan role pengguna lebih lanjut (admin, operator, pustakawan).
+   ```java
+   public class App extends Application
 
-4. **Polimorfisme**  
+
+7. **Polimorfisme**  
    Penggunaan method overriding di dalam controller yang menangani aksi-aksi pada tombol atau event tertentu, tergantung konteks UI yang aktif.
+      ```java
+      @Override
+      public void start(Stage primaryStage) throws Exception
+
 
 ---
 
