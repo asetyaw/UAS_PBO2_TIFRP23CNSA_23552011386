@@ -18,6 +18,64 @@
 </ul>
 
 ---
+
+## Kelompok
+
+<ul>
+  <li>Kelompok: 2</li>
+  <li>Proyek: Absensi Perpustakaan untuk Universitas Teknologi Bandung(NusaMart)</li>
+  <li>Anggota:</li>
+  <ul>
+    <li>Ketua: <a href="https://github.com/Aasetya">Aa Setya</a></li>
+    <li>Anggota 1: <a href="https://github.com/">Gilang</a></li>
+    <li>Anggota 2: <a href="https://github.com/">Nurul</a></li>
+  </ul>
+</ul>
+
+---
+
+## Penjelasan Studi Kasus
+
+<p>
+  Perpustakaan di sebuah Universitas Teknologi Bandung masih menggunakan sistem manual untuk mencatat kehadiran mahasiswa yang berkunjung. Proses ini dilakukan dengan menuliskan NIM di buku absensi, yang sangat rentan terhadap kesalahan pencatatan, duplikasi data, serta tidak efisien dalam pembuatan laporan kehadiran.
+</p>
+<p>
+  Studi kasus ini berfokus pada pengembangan dan implementasi **Aplikasi Absensi Perpustakaan** berbasis GUI menggunakan JavaFX dan NetBeans IDE. Aplikasi ini dirancang untuk menggantikan sistem pencatatan manual dengan antarmuka modern, suara notifikasi selamat datang, serta kemampuan ekspor data ke CSV. Tujuan utamanya adalah meningkatkan efisiensi pencatatan, mempermudah admin dalam melihat rekap data, dan memberikan pengalaman digital yang ramah bagi pengguna (mahasiswa).
+</p>
+
+---
+
+## Penjelasan 4 Pilar OOP dalam Studi Kasus
+1. **Enkapsulasi**  
+   Setiap entitas seperti `Mahasiswa`, `Absensi`, dan `Admin` diwakili oleh kelas dengan atribut dan metode yang dibungkus secara rapi. Data sensitif seperti password admin dienkapsulasi agar tidak diakses langsung.
+
+2. **Abstraksi**  
+   Implementasi koneksi database (DAO) disembunyikan dari komponen GUI, hanya menyediakan metode seperti `simpanAbsensi()`, `getMahasiswaByNIM()`, dll.
+
+3. **Inheritance (Pewarisan)**  
+   Kelas turunan dapat dibuat dari kelas dasar jika dibutuhkan — misalnya jika ingin mengembangkan role pengguna lebih lanjut (admin, operator, pustakawan).
+
+4. **Polimorfisme**  
+   Penggunaan method overriding di dalam controller yang menangani aksi-aksi pada tombol atau event tertentu, tergantung konteks UI yang aktif.
+
+---
+
+## Demo Proyek
+
+<ul>
+  <li>Github: <a href="https://github.com/asetyaw/UAS_PBO2_TIFRP23CNSA_23552011386">Github</a></li>
+  <li>Youtube: <a href="">Youtube</a></li>
+</ul>
+
+---
+
+
+
+---
+
+
+
+---
 ## ✨ Fitur Unggulan
 
 ✅ Absensi Mahasiswa berdasarkan NIM  
