@@ -28,7 +28,7 @@
 ---
 
 ## Judul Studi Kasus
-<p>Aplikasi Absensi Perpustakaan Berbasis JavaFX</p>
+<p>Aplikasi Absensi Perpustakaan di Universitas Teknologi Bandung</p>
 
 
 ---
