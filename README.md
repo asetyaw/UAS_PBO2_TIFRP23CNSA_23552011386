@@ -12,9 +12,9 @@
 ## Profil
 
 <ul>
-  <li>Nama: {Bayu Aji Prayoga}</li>
-  <li>NIM: {23552011194}</li>
-  <li>Studi Kasus: {Aplikasi KASIRIN Berbasis GUI untuk Digitalisasi Warung Mamah Arika (NusaMart)}</li>
+  <li>Nama: {Aa Setya Wibawa}</li>
+  <li>NIM: {23552011386}</li>
+  <li>Studi Kasus: {Aplikasi Absensi Perpustakaan Berbasis JavaFX}</li>
 </ul>
 
 ---
