@@ -107,29 +107,6 @@
 
 ---
 
-
-
----
-
-
-
----
-## ✨ Fitur Unggulan
-
-✅ Absensi Mahasiswa berdasarkan NIM  
-✅ Suara “Selamat Datang” setelah absensi  
-✅ Pendaftaran Mahasiswa Baru  
-✅ Login untuk Admin  
-✅ Dashboard Admin  
-✅ Ekspor Data Absensi ke Format **CSV**  
-✅ Interface rapi dengan **FXML + CSS**  
-✅ Terhubung ke **MySQL Database**
-
----
-
-
----
-
 ## 🚀 Cara Menjalankan
 
 ### Prasyarat:
