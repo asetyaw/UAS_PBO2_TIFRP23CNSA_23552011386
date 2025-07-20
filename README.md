@@ -102,7 +102,7 @@
 
 <ul>
   <li>Github: <a href="https://github.com/asetyaw/UAS_PBO2_TIFRP23CNSA_23552011386">Github</a></li>
-  <li>Youtube: <a href="https://youtu.be/E1q_mcis1yw">"Youtube"</a></li>
+  <li>Youtube: <a href="https://youtu.be/E1q_mcis1yw">Youtube</a></li>
 </ul>
 
 ---
