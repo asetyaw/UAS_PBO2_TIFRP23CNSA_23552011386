@@ -27,6 +27,18 @@
 
 ---
 
+<ul>
+  <li>Kelompok: 1</li>
+  <li>Anggota:</li>
+  <ul>
+    <li>Ketua: <a href="https://github.com/Aasetya">Aasetyawibawa</a></li>
+    <li>Anggota 1: <a href="https://github.com/">Ai Nurul Hidayah</a></li>
+    <li>Anggota 2: <a href="https://github.com/">Gilang Ramadhan Herdian</a></li>
+  </ul>
+</ul>
+
+---
+
 ## Judul Studi Kasus
 <p>Aplikasi Absensi Perpustakaan di Universitas Teknologi Bandung</p>
 
