@@ -31,7 +31,7 @@
   <li>Kelompok: 1</li>
   <li>Anggota:</li>
   <ul>
-    <li>Ketua: <a href="https://github.com/Aasetya">Aasetyawibawa</a></li>
+    <li>Ketua: <a href="https://github.com/asetyaw">Aasetyawibawa</a></li>
     <li>Anggota 1: <a href="https://github.com/">Ai Nurul Hidayah</a></li>
     <li>Anggota 2: <a href="https://github.com/">Gilang Ramadhan Herdian</a></li>
   </ul>
